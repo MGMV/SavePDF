@@ -1,0 +1,18 @@
+ internal class JsonObject
+    {
+        [JsonProperty("media")]
+        public Media Media { get; set; }
+    }
+
+    public class Media
+    {
+        [JsonProperty("patient")]
+        public int patient { get; set; }
+        [JsonProperty("services")]
+        public Servises[] services { get; set; }
+    }
+
+    public class Servises
+    {
+        public string serviceCode { get; set; }
+    }
