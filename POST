@@ -1,0 +1,27 @@
+ List<Servises> asdd = new List<Servises>();
+            asdd.Add(new Servises { serviceCode = "000" });
+            asdd.Add(new Servises { serviceCode = "000" });
+            asdd.Add(new Servises { serviceCode = "000" });
+
+            Media media = new Media { patient = 1, services = asdd.ToArray() };
+            string json = JsonConvert.SerializeObject(media);
+            
+
+
+            MessageBox.Show(json.ToString());
+
+            var httpRequest = (HttpWebRequest)WebRequest.Create(@"http://localhost:5000/api/analyzer/" + json.ToString());
+            httpRequest.Method = "POST";
+            httpRequest.ContentType = "application/json";
+            using (var requestStream = httpRequest.GetRequestStream())
+            using (var writer = new StreamWriter(requestStream))
+            {
+                writer.Write(json);
+            }
+            using (var httpResponse = httpRequest.GetResponse())
+            using (var responseStream = httpResponse.GetResponseStream())
+            using (var reader = new StreamReader(responseStream))
+            {
+                string response = reader.ReadToEnd();
+                MessageBox.Show(response);
+            }
