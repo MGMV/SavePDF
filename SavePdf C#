@@ -1,0 +1,21 @@
+ iTextSharp.text.Document doc = new iTextSharp.text.Document();
+            PdfWriter.GetInstance(doc, new FileStream("pdfTables.pdf", FileMode.Create));
+            doc.Open();
+            PdfPTable table = new PdfPTable(dataGridView2.Columns.Count);
+            PdfPCell cell = new PdfPCell(new iTextSharp.text.Phrase("БД "));
+            table.AddCell(cell);
+            for (int i = 0; i < dataGridView2.Columns.Count; i++)
+            {
+                cell = new PdfPCell(new iTextSharp.text.Phrase(dataGridView2.Columns[i].Name));
+                table.AddCell(cell);
+            }
+            for (int i = 0; i < dataGridView2.Rows.Count-1; i++)
+            {
+                for (int z = 0; z < dataGridView2.Columns.Count; z++)
+                {
+                    table.AddCell(new Phrase(dataGridView2.Rows[i].Cells[z].Value.ToString()));
+                }
+            }
+            doc.Add(table);
+            doc.Close();
+            MessageBox.Show("Saved");
