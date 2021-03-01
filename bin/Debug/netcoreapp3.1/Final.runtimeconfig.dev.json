@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\budik\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\budik\\.nuget\\packages"
+    ]
+  }
+}
